@@ -1,0 +1,27 @@
+{
+  "name": "koa-crawler",
+  "version": "1.0.0",
+  "description": "一个吸收了koa思想的crawler爬虫",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiangshuifish/koa-crawler.git"
+  },
+  "keywords": [
+    "koa",
+    "crawler"
+  ],
+  "author": "fish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qiangshuifish/koa-crawler/issues"
+  },
+  "homepage": "https://github.com/qiangshuifish/koa-crawler#readme",
+  "dependencies": {
+    "crawler": "^1.2.1",
+    "koa-compose": "^4.1.0"
+  }
+}
