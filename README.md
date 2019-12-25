@@ -1,2 +1,2 @@
 # koa-crawler
-一个吸收了koa实现的crawler爬虫
+一个吸收了koa思想的crawler爬虫
