@@ -15,15 +15,16 @@ const crawler = new Crawler({
             console.trace(error);
         } else {
             let middleWares = res.options.middleWares;
-            compose(middleWares)({res,addToQueue,middleWares});
+            let param = res.options.param;
+            compose(middleWares)({res,addToQueue,middleWares,param});
         }
         done();
     }
 });
 
 
-function addToQueue(url,middleWares) {
-    crawler.queue({uri:url,middleWares});
+function addToQueue(url,middleWares,param = {}) {
+    crawler.queue({uri:url,middleWares,param});
 }
 
 module.exports = addToQueue;
