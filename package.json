@@ -22,7 +22,6 @@
   "homepage": "https://github.com/qiangshuifish/koa-crawler#readme",
   "dependencies": {
     "crawler": "^1.2.1",
-    "koa-compose": "^4.1.0",
     "cheerio": "latest"
   }
 }
