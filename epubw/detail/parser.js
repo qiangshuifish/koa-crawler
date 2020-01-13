@@ -1,14 +1,15 @@
 const cheerio = require('cheerio');//http://cnodejs.org/topic/5203a71844e76d216a727d2e
 const downloadParser = require("../detail/downloadParser")
+const service = require("../detail/service")
 
 let count = 0;
 
 async function parse(ctx,next) {
     count++;
     const $ = cheerio.load(ctx.res.body,{decodeEntities: false});
+    let book = ctx.param.book;
 
     let bookInfo= $(".bookinfo");
-    let book = {};
     bookInfo.find('li').each(function (index,bookLi) {
         switch (index){
             case 0:
@@ -34,8 +35,7 @@ async function parse(ctx,next) {
 
     let url = $("[colspan='2']").find("a").attr("href");
     if(url){
-        ctx.book = book;
-        ctx.addToQueue(url,[downloadParser],{book})
+        ctx.addToQueue(url,[downloadParser,service],{book})
         console.log(` =========== 添加下载详情页面 ${url} ===========`);
     }
     console.log(`爬取第 ${count} 个结果 名称 ${book.name}`);

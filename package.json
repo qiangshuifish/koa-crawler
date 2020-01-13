@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/qiangshuifish/koa-crawler#readme",
   "dependencies": {
+    "cheerio": "latest",
     "crawler": "^1.2.1",
-    "cheerio": "latest"
+    "mongodb": "^3.4.1"
   }
 }

@@ -4,7 +4,7 @@ let count = 0;
 
 async function parse(ctx,next) {
     count++;
-    let movie = {};
+    let movie = ctx.param.movie;
     const $ = cheerio.load(ctx.res.body,{decodeEntities: false});
 
     movie.name = $(".title_all").find("h1").text();
@@ -16,7 +16,7 @@ async function parse(ctx,next) {
     movie.ftp= $(ftp).find("a").attr("href");
     let magnet = $(table).find("table").children()[1];
     movie.magnet= $(magnet).find("a").attr("href");
-    movie.content = $(table).text()
+    movie.content = $(table).text();
 
     console.log(`爬取第 ${count} 个结果 名称 ${movie.name}`);
 

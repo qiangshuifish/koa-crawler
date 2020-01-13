@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');//http://cnodejs.org/topic/5203a71844e76d216a727d2e
 const detailParser = require("../detail/parser")
+const service = require("../detail/service")
 
 
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/;
@@ -14,7 +15,7 @@ async function parse (ctx,next) {
     let movieTableList = $('.co_area2').children();
     console.log(`============ 爬取列表 ${movieTableList.length} 个结果 =============`);
 
-    movieTableList.splice(0, 4)
+    movieTableList.splice(0, 4);
     movieTableList.find('table').each(function (index, table) {
         let movie = {};
         movie.name = $(table).find('.ulink').html();
@@ -22,7 +23,8 @@ async function parse (ctx,next) {
 
         movie.date = dateRegex.exec($(table).find('font').text())[0];
         movie.content = $(table).find('td').last().html();
-        ctx.addToQueue(movie.url,[detailParser])
+
+        ctx.addToQueue(movie.url,[detailParser,service],{movie})
         console.log(`============ 添加详情页面 ${movie.url} 到队列 =============`);
     });
 
